@@ -18,15 +18,15 @@ Math.random2(5,25) => s.harmonics => sqr.harmonics;
 
 // set the gain for both oscillators
 
-0.1 => s.gain => sqr.gain;
+0.08 => s.gain => sqr.gain;
 
 // Set the adsr envelope (attack, decay, sustain, and release)
 
-adsr.set(10::ms, 200::ms, 0.1, 5000::ms);
+adsr.set(10::ms, 80::ms, 0.0, 10::ms);
 
 // set the reverb mix
 
-r.mix(0.1);
+r.mix(0.2);
 
 // Create an array of midi note values 
 
@@ -38,19 +38,19 @@ while(true) {
   for(int i; i < seq.cap(); i++) {
     
     // Store the note to a frequency variable
-    Std.mtof(seq[i] + 60) => float freq;
+    Std.mtof(seq[i] + 72) => float freq;
     
     // Pass to  both oscillators. Detune the second oscillator for a wider sound
     
-    freq + 2.11299 => sqr.freq;
+    freq + 0 => sqr.freq;
     freq => s.freq;
     
     // Trigger ADSR envelope with a key on message
     adsr.keyOn();
-    T / 4 => now;
+    T / 16 => now;
     // Trigger ADSR envelope with a key off message
     adsr.keyOff();
-    T / 4 => now;
+    T / 16 => now;
 
   }
 
