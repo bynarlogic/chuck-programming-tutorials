@@ -14,7 +14,7 @@ $ chuck 1.\ Simple\ Sine\ Wave.ck
 ### Chapter 1. Simple Sine Wave
 ChucK has a collection of UnitGenerators which make noise. The first UnitGenerator we will explore is called SinOsc. This is a simple Sine Wave that emits a single fundamental frequency at 440 Hertz at half volume. The SinOsc is 'chucked' to the dac object using the => operator. The dac object or the digital audio converter is the computer's connection to your external speakers or sound card.  Think of the => operator as a patch cable or plug that connects the audio output of the SineWave into the speaker.
 
-    SinOsc => dac;
+    SinOsc s => dac;
     s.gain(0.5);
     s.freq(440);
 This code alone will not produce sound. To produce sound, we have to tell the program how long the sound is going to last. ChucK applies time units to the now object. Now represents the current time plus the additional time 'chucked' to now. In this example we only want to process the sound for one second. Therefore we 'chuck' 1 second to now.
